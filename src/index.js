@@ -1,13 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
+import ProfilePage from './pages/ProfilePage';
+import PostPage from './pages/PostPage';
+import Address from './components/Address';
+import Hobby from './components/Hobby';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+    <Navbar />
+    <Routes>
+    <Route path='/' element={<HomePage/>}/>
+    <Route path='/post/:id' element={<PostPage/>}/>
+      
+      <Route path='*' element={<h1>404 Not Found</h1>}/>
+
+      <Route path='/profile/' element={<ProfilePage/>}>
+      <Route path='address' element={<Address/>}/>
+      <Route path='hobby' element={<Hobby/>}/>
+      </Route>
+    </Routes></BrowserRouter>
   </React.StrictMode>
 );
 
